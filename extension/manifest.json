@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+  "name": "Reddit Bot Filter",
+  "version": "0.2.1",
+  "description": "Collapses likely-bot posts and highlights likely-bot comments on Reddit.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "reddit-bot-filter-spike@example.local",
+      "data_collection_permissions": { "required": ["none"] }
+    }
+  },
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "https://old.reddit.com/*",
+    "https://www.reddit.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://old.reddit.com/*", "https://www.reddit.com/*"],
+      "js": ["scoring.js", "cache.js", "fetcher.js", "adapters.js", "ui.js", "content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
